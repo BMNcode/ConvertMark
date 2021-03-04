@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.*;
+import javafx.scene.text.TextFlow;
 import org.bmn.logic.CreateOutput;
 import org.bmn.logic.ParseFlexaTable;
 import org.bmn.logic.Rotate;
@@ -31,23 +32,9 @@ public class MainController {
     public TextField boardX;
     public TextField boardY;
     public TextArea outputText;
-    public TableColumn colBoard;
-    public TableColumn colType;
-    public TableColumn colLevel;
-    public TableColumn colRef;
-    public TableColumn colPosX;
-    public TableColumn colPosY;
-    public TableColumn colMarkName;
-    public TableColumn colMainMark;
-    public TableColumn colSubMark;
-    public TableColumn colSubMark1;
-    public TableColumn colSubMark2;
-    public TableColumn colSkip;
-    public TableColumn colMemo;
-    public TableColumn colTag;
-    public TableColumn colOffsetY;
-    public TableColumn colOffsetX;
-    public TableColumn colAssign;
+    public Label dangerLabel;
+    public TextFlow tx;
+    public TableView outTable;
     private String bufferGlobal;
     private double nowAngle;
 
@@ -82,37 +69,25 @@ public class MainController {
                         clipboardDataTop.add(Arrays.asList(s.split("\\t")));
                     }
 
-                    //создаем таблицу
-                    mainTable.getColumns().clear();
-
-
-
-                        //добавляем содержимое в таблицу
-                        ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
+                    //добавляем содержимое в таблицу
+                    ObservableList<ObservableList<String>> data = FXCollections.observableArrayList();
                     for (int i = 1; i < clipboardDataTop.size(); i++) {
                         data.add(FXCollections.observableArrayList(clipboardDataTop.get(i)));
                     }
 
                     mainTable.setItems(data);
 
-                    List<TableColumn> columns = Arrays.asList(colBoard, colType, colLevel, colRef,
-                                                                colPosX, colPosY, colMarkName,
-                                                                colMainMark, colSubMark, colSubMark1,
-                                                                colSubMark2, colSkip, colMemo, colTag,
-                                                                colOffsetY, colOffsetX, colAssign);
+                    List<TableColumn<ObservableList<String>, String>> columns = mainTable.getColumns();
 
-
-                    for (int i = 0; i < clipboardDataTop.get(0).size(); i++) {
+                    for (int i = 0; i <columns.size(); i++) {
                         final int currentColumn = i;
-                        TableColumn<ObservableList<String>, String> column = new TableColumn<>(ExcelColumnCollection.columnIndexToName(currentColumn));
-                        column.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().get(currentColumn)));
-                        column.setEditable(true);
-                        column.setCellFactory(TextFieldTableCell.forTableColumn());
-                        column.setOnEditCommit(
+                        columns.get(i).setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue().get(currentColumn)));
+                        columns.get(i).setEditable(true);
+                        columns.get(i).setCellFactory(TextFieldTableCell.forTableColumn());
+                        columns.get(i).setOnEditCommit(
                                 (TableColumn.CellEditEvent<ObservableList<String>, String> t) -> {
                                     t.getTableView().getItems().get(t.getTablePosition().getRow()).set(t.getTablePosition().getColumn(), t.getNewValue());
                                 });
-                        mainTable.getColumns().add(column);
                     }
                 }
             }
@@ -122,6 +97,9 @@ public class MainController {
     //generate result
     public void generateResult() {
 
+        dangerLabel.setText("");
+        outTable.setDisable(false);
+
         if (rotate90.isSelected()) {
             nowAngle = 90.0;
         } else if (rotate180.isSelected()) {
@@ -129,6 +107,7 @@ public class MainController {
         } else if (rotate270.isSelected()) {
             nowAngle = 270.0;
         }
+        outTable.getColumns().clear();
 
         try {
             //getMark from buffer
@@ -151,19 +130,24 @@ public class MainController {
                         Double.parseDouble(boardY.getText())));
             }
 
+
+
             //output result
-            CreateOutput.outputLabel(marks, outputText);
+            CreateOutput.outputLabel(marks, outTable);
         } catch (Exception e) {
             if (boardX.getText().isEmpty()) {
-                outputText.setText("Panel size X = ???");
+                outTable.setDisable(true);
+                dangerLabel.setText("Panel size X = ???");
 
             }
             if (boardY.getText().isEmpty()) {
-                outputText.setText("Panel size Y = ???");
+                outTable.setDisable(true);
+                dangerLabel.setText("Panel size Y = ???");
 
             }
             if (mainTable.getItems().isEmpty()) {
-                outputText.setText("Marks???");
+                outTable.setDisable(true);
+                dangerLabel.setText("Marks???");
 
             }
         }
