@@ -15,13 +15,13 @@ public class Launcher extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader();
-        URL xmlUrl = getClass().getResource("/view/fxml/main.fxml");
+        URL xmlUrl = getClass().getResource("/view/fxml/nMain.fxml");
         loader.setLocation(xmlUrl);
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
-        primaryStage.initStyle(StageStyle.UNIFIED);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setTitle("Rotation Mark");
         primaryStage.show();
 
