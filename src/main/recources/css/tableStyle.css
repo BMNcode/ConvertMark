@@ -1,0 +1,43 @@
+.table-view .column-header-background{
+    -fx-background-color: #3C3F41;
+    -fx-border-color: #9F9F9F;
+}
+
+.table-view .column-header {
+    -fx-background-color: #3C3F41;
+}
+
+.table-view .column-header-background .label{
+    -fx-alignment: center_left;
+    -fx-background-color: #3C3F41;
+    -fx-text-fill: white;
+    -fx-font-size:15;
+ }
+
+.table-row-cell{
+    -fx-background-color: #3C3F41;
+    -fx-table-cell-border-color: #9F9F9F;
+ }
+
+ .table-view .table-cell{
+     -fx-alignment: center-left;
+     -fx-text-fill: white;
+     -fx-font-size:15;
+     -fx-font-weight: bold
+ }
+
+.table-row-cell:selected {
+    -fx-background-color:#9F9F9F;
+    -fx-text-fill: white;
+    -fx-table-cell-border-color: #3C3F41;
+ }
+
+.table-row-cell:selected .table-cell{
+    -fx-text-fill: white;
+ }
+
+ .table-row-cell:empty{
+     -fx-background-color:#3C3F41;
+     -fx-border-color: #3C3F41;
+     -fx-table-cell-border-color: #3C3F41;
+  }

@@ -2,64 +2,125 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="807.0" prefWidth="1081.0" style="-fx-background-color: #3C3F41; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bmn.controller.RotateViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="1123.0" style="-fx-background-color: #3C3F41;" stylesheets="@../../css/tableStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bmn.controller.RotateViewController">
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="1085.0" spacing="20.0" style="-fx-border-color: #555555; -fx-border-width: 5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutY="-1.0" prefHeight="86.0" prefWidth="1133.0" spacing="15.0" style="-fx-background-color: #3C3F41; -fx-border-color: #9F9F9F; -fx-border-width: 5;">
          <children>
-            <Label text="Mark Rotation" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-            <RadioButton mnemonicParsing="false" selected="true" text="90º" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font></RadioButton>
-            <RadioButton mnemonicParsing="false" text="180º" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font></RadioButton>
-            <RadioButton mnemonicParsing="false" text="270º" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font></RadioButton>
-            <Label text="Panel X" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-            <TextField prefHeight="21.0" prefWidth="88.0">
+            <Label prefHeight="36.0" prefWidth="133.0" text="Mark rotation" textAlignment="JUSTIFY" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
                <font>
                   <Font size="18.0" />
-               </font></TextField>
-            <Label text="Panel Y" textFill="WHITE">
-               <font>
-                  <Font size="24.0" />
-               </font></Label>
-            <TextField prefHeight="21.0" prefWidth="88.0">
-               <font>
-                  <Font size="18.0" />
-               </font></TextField>
-            <Button mnemonicParsing="false" prefHeight="21.0" prefWidth="88.0" style="-fx-background-color: #555555;" text="START" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
                </font>
+            </Label>
+            <RadioButton fx:id="rotate90" mnemonicParsing="false" prefHeight="27.0" prefWidth="68.0" selected="true" text="90°" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <toggleGroup>
+                  <ToggleGroup fx:id="gRotate" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rotate180" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="180°" textFill="WHITE" toggleGroup="$gRotate">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <RadioButton fx:id="rotate270" mnemonicParsing="false" onMouseClicked="#parseMainTable" text="270°" textFill="WHITE" toggleGroup="$gRotate">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </RadioButton>
+            <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="77.0" text="Panel X" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="boardX" alignment="CENTER" onKeyPressed="#inputSizeX" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #3C3F41; -fx-border-color: #9F9F9F; -fx-border-width: 2;" styleClass="text-input" stylesheets="@../../css/style.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+            <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="76.0" text="Panel Y" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="boardY" alignment="CENTER" onKeyPressed="#inputSizeY" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #3C3F41; -fx-border-color: #9F9F9F; -fx-border-width: 2;" styleClass="text-input" stylesheets="@../../css/style.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#generateResult" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #3C3F41; -fx-border-color: #9F9F9F; -fx-border-width: 2;" text="Start" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <TableView layoutX="-1.0" layoutY="613.0" prefHeight="200.0" prefWidth="1087.0" style="-fx-background-color: #555555; -fx-border-color: #555555;" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="-4.0" />
-      <ImageView fitHeight="312.0" fitWidth="444.0" layoutX="320.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/examplePCB.png" />
-         </image></ImageView>
-
+      <SplitPane dividerPositions="0.3917808219178082" layoutY="80.0" orientation="VERTICAL" prefHeight="394.0" prefWidth="1133.0" style="-fx-background-color: BCBAC4; -fx-border-color: #9F9F9F; -fx-border-width: 5;">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="228.0" prefWidth="1078.0">
+               <children>
+                  <Label fx:id="dangerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="6.0" layoutX="403.0" layoutY="80.0" prefHeight="43.0" prefWidth="267.0" textAlignment="CENTER" textFill="#fc0606">
+                     <font>
+                        <Font name="Tahoma Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="outTable" editable="true" layoutY="-6.0" prefHeight="215.0" prefWidth="1101.0" style="-fx-background-color: #3C3F41;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy></TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="202.0" prefWidth="1093.0">
+               <children>
+                  <TableView fx:id="mainTable" editable="true" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#parseMainTable" prefHeight="252.0" prefWidth="1121.0" style="-fx-background-color: #3C3F41;" stylesheets="@../../css/tableStyle.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
+                    <columns>
+                        <TableColumn fx:id="colBoard" prefWidth="75.0" text="Board" />
+                        <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
+                      <TableColumn fx:id="colLevel" prefWidth="75.0" text="Level" />
+                      <TableColumn fx:id="colRef" prefWidth="75.0" text="Ref." />
+                        <TableColumn fx:id="colPosX" prefWidth="75.0" text="Pos X" />
+                        <TableColumn fx:id="colPosY" prefWidth="75.0" text="Pos Y" />
+                        <TableColumn fx:id="colMarkName" prefWidth="91.0" text="Mark Name" />
+                        <TableColumn fx:id="colMainMark" minWidth="8.0" prefWidth="35.0" text="Main Mark" />
+                        <TableColumn fx:id="colSubMark" prefWidth="93.0" text="Sub Mark" />
+                        <TableColumn fx:id="colSubMark1" prefWidth="96.0" text="Sub Mark1" />
+                        <TableColumn fx:id="colSubMark2" prefWidth="30.0" text="Sub Mark2" />
+                        <TableColumn fx:id="colSkip" prefWidth="75.0" text="Skip" />
+                        <TableColumn fx:id="colMemo" prefWidth="75.0" text="Memo" />
+                        <TableColumn fx:id="colTag" prefWidth="75.0" text="Tag" />
+                        <TableColumn fx:id="colOffsetY" prefWidth="75.0" text="Offset Y" />
+                        <TableColumn fx:id="colOffsetX" prefWidth="75.0" text="Offset X" />
+                        <TableColumn fx:id="colAssign" prefWidth="75.0" text="Assign" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
    <opaqueInsets>
-      <Insets />
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </opaqueInsets>
    <padding>
-      <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
 </AnchorPane>

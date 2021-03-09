@@ -33,6 +33,12 @@ public class CreateOutput {
         markPosXCol.setCellValueFactory(new PropertyValueFactory<>("positionX"));
         markPosYCol.setCellValueFactory(new PropertyValueFactory<>("positionY"));
 
+        markPosXCol.setEditable(true);
+        markPosYCol.setEditable(true);
+
+        markPosXCol.setStyle("-fx-text-fill: green");
+        markPosYCol.setStyle("-fx-text-fill: green");
+
 
         tableView.getColumns().addAll(markTypeCol, markRefCol, markPosXCol, markPosYCol);
         tableView.setEditable(true);
