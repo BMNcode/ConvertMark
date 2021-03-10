@@ -12,6 +12,8 @@ public class Mark {
     public Mark() {
     }
 
+
+
     public Mark(String type, String reference, double positionX, double positionY) {
         this.type = type;
         this.reference = reference;

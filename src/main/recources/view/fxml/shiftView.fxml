@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="1123.0" style="-fx-background-color: #3C3F41;" stylesheets="@../../css/tableStyle.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bmn.controller.ShiftViewController">
+   <children>
+      <HBox alignment="CENTER" layoutY="-1.0" prefHeight="86.0" prefWidth="1133.0" spacing="25.0" style="-fx-background-color: #3C3F41; -fx-border-color: #9F9F9F; -fx-border-width: 5;">
+         <children>
+            <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="129.0" text="Panel outside X" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="boardOutsideX" alignment="CENTER" onKeyPressed="#inputShiftOutSizeX" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #3C3F41; -fx-border-color: #9F9F9F; -fx-border-width: 2;" styleClass="text-input" stylesheets="@../../css/style.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+            <Label alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="116.0" text="Panel inner X" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="boardInnerX" alignment="CENTER" onKeyPressed="#inputShiftInnerSizeX" prefHeight="25.0" prefWidth="105.0" style="-fx-background-color: #3C3F41; -fx-border-color: #9F9F9F; -fx-border-width: 2;" styleClass="text-input" stylesheets="@../../css/style.css">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </TextField>
+            <Button mnemonicParsing="false" onAction="#generateResult" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #3C3F41; -fx-border-color: #9F9F9F; -fx-border-width: 2;" text="Start" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <SplitPane dividerPositions="0.3917808219178082" layoutY="80.0" orientation="VERTICAL" prefHeight="394.0" prefWidth="1133.0" style="-fx-background-color: BCBAC4; -fx-border-color: #9F9F9F; -fx-border-width: 5;">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="228.0" prefWidth="1078.0">
+               <children>
+                  <Label fx:id="shiftDangerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="6.0" layoutX="403.0" layoutY="80.0" prefHeight="43.0" prefWidth="267.0" textAlignment="CENTER" textFill="#fc0606">
+                     <font>
+                        <Font name="Tahoma Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="shiftOutTable" editable="true" layoutY="-6.0" prefHeight="215.0" prefWidth="1101.0" style="-fx-background-color: #3C3F41;" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy></TableView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="202.0" prefWidth="1093.0">
+               <children>
+                  <TableView fx:id="shiftMainTable" editable="true" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#parseMainTable" prefHeight="252.0" prefWidth="1121.0" style="-fx-background-color: #3C3F41;" stylesheets="@../../css/tableStyle.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-1.0">
+                    <columns>
+                        <TableColumn fx:id="colBoard" prefWidth="75.0" text="Board" />
+                        <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
+                      <TableColumn fx:id="colLevel" prefWidth="75.0" text="Level" />
+                      <TableColumn fx:id="colRef" prefWidth="75.0" text="Ref." />
+                        <TableColumn fx:id="colPosX" prefWidth="75.0" text="Pos X" />
+                        <TableColumn fx:id="colPosY" prefWidth="75.0" text="Pos Y" />
+                        <TableColumn fx:id="colMarkName" prefWidth="91.0" text="Mark Name" />
+                        <TableColumn fx:id="colMainMark" minWidth="8.0" prefWidth="35.0" text="Main Mark" />
+                        <TableColumn fx:id="colSubMark" prefWidth="93.0" text="Sub Mark" />
+                        <TableColumn fx:id="colSubMark1" prefWidth="96.0" text="Sub Mark1" />
+                        <TableColumn fx:id="colSubMark2" prefWidth="30.0" text="Sub Mark2" />
+                        <TableColumn fx:id="colSkip" prefWidth="75.0" text="Skip" />
+                        <TableColumn fx:id="colMemo" prefWidth="75.0" text="Memo" />
+                        <TableColumn fx:id="colTag" prefWidth="75.0" text="Tag" />
+                        <TableColumn fx:id="colOffsetY" prefWidth="75.0" text="Offset Y" />
+                        <TableColumn fx:id="colOffsetX" prefWidth="75.0" text="Offset X" />
+                        <TableColumn fx:id="colAssign" prefWidth="75.0" text="Assign" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+   <opaqueInsets>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</AnchorPane>
