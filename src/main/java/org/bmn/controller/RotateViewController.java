@@ -62,10 +62,11 @@ public class RotateViewController {
             Parent root = loader.load();
             stageViewRotate.setTitle("Rotate");
             stageViewRotate.setResizable(false);
+            stageViewRotate.initModality(Modality.WINDOW_MODAL);
             //stageViewRotate.initStyle(StageStyle.TRANSPARENT);
             stageViewRotate.setScene(new Scene(root));
-            stageViewRotate.initModality(Modality.NONE);
-            stageViewRotate.show();
+            stageViewRotate.initModality(Modality.APPLICATION_MODAL);
+            stageViewRotate.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }

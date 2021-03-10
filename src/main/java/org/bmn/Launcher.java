@@ -23,6 +23,7 @@ public class Launcher extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
+
         primaryStage.setTitle("Rotation Mark");
         primaryStage.show();
 

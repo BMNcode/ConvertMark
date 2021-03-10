@@ -45,15 +45,15 @@ public class ShiftViewController {
 
     public void viewShift() {
         try {
-            Stage stageViewRotate = new Stage();
+            Stage stageViewShift = new Stage();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/view/fxml/shiftView.fxml"));
             Parent root = loader.load();
-            stageViewRotate.setTitle("Shift");
-            stageViewRotate.setResizable(false);
-            stageViewRotate.setScene(new Scene(root));
-            stageViewRotate.initModality(Modality.NONE);
-            stageViewRotate.show();
+            stageViewShift.setTitle("Shift");
+            stageViewShift.setResizable(false);
+            stageViewShift.setScene(new Scene(root));
+            stageViewShift.initModality(Modality.APPLICATION_MODAL);
+            stageViewShift.showAndWait();
         } catch (Exception e) {
             e.printStackTrace();
         }
